@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+  	<p id="demo"></p>
+</div>
+	<script>
+		var a = window.location.hash.split('/');
+		if (a == "") {
+		    document.removeChild("p");
+		}
+		else {
+			document.getElementById("demo").innerHTML = a[1];
+		}
+	</script>
+</body>
+</html>
