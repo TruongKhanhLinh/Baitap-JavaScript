@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+    Ngày: <input id="day" type="number" name="day"> </br></br> 
+    Tháng: <input id="month" type="number" name="month"> </br></br> 
+    Năm: <input id="year" type="number" name="year"> </br></br> 
+    <input type="submit" value="Submit" onclick="isValidDate()" /> <br>
+
+    <p id="show"></p>
+
+    <script>
+        var day = document.getElementById("day");
+        var month = document.getElementById("month");
+        var year = document.getElementById("year");
+        var dayMax="";
+
+        function isValidDate(){
+            day = parseInt(day.value);
+            month = parseInt(month.value);
+            year = parseInt(year.value);
+            dayMax = parseInt(dayMax.value);
+
+            showDay = document.getElementById("day").value;
+            showMonth = document.getElementById("month").value;
+            showYear = document.getElementById("year").value;
+
+            if (showDay == "" || showMonth == "" || showYear == "" ) {
+                alert("Hãy đầy đủ các trường");
+            }
+
+            else if (year<0 || month<0 || month> 12 || day<0 || day> 31) {
+                document.getElementById("show").innerHTML = "Tháng không hợp lệ";
+            }
+            else {
+                switch (month) {
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 12:
+                        dayMax = 31;
+                        break;
+                    case 2:
+                        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+                            dayMax = 29;
+                        else {
+                            dayMax = 28;
+                            break;
+                        }
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        dayMax = 30;
+                        break;
+                }
+
+                if (day <= dayMax) {
+                    var strigdate = showYear + "-" + showMonth + "-" + showDay;
+                    var d = new Date(strigdate);
+                    var timestamp = Math.floor(d / 1000);
+                    document.getElementById("show").innerHTML = "Timestamp:" + timestamp + " miliseconds";
+                }
+                else{
+                    document.getElementById("show").innerHTML = "Ngày không hợp lệ";
+                }
+            }
+        }
+      
+    </script>
+</body>
+</html>

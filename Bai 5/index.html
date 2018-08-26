@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+</head>
+<body id="mybody" onload = "creatButton()">
+    <script>
+        var languages = ['js', 'css', 'html', 'c#', 'java', 'c++', 'pascal', 'ruby', 'r', 'python', 'nodejs'];
+        function creatButton() {
+            for (i = 0; i < languages.length; i++) {
+                var p = document.createElement("label");
+                var text = document.createTextNode(languages[i]);
+
+                var creatInput = document.createElement("input");
+                creatInput.setAttribute("type", "checkbox");
+                creatInput.setAttribute("id", "checkbox" + i);
+
+                var creatSpan = document.createElement("span");
+                
+                creatSpan.appendChild(text);
+                p.appendChild(creatInput);
+                p.appendChild(creatSpan);
+
+                var brr = document.createElement("br");
+                document.body.appendChild(p);
+                document.body.appendChild(brr);
+            }
+        }
+
+        function checkList() {
+            var chooseBefore = document.getElementById("chooseBefore");
+            var p = document.createElement("p");
+            p.setAttribute("id","chooseBefore");
+
+            if (chooseBefore) {
+                document.body.removeChild(chooseBefore);
+            }
+            var languagesChoose = [];
+            for (i = 0; i < languages.length; i++) {
+                var check = document.getElementById("checkbox" + i);
+                if (check.checked)
+                    languagesChoose.push(languages[i]);
+            }
+
+            var text = document.createTextNode("Các ngôn ngữ bạn đã chọn là: "+ languagesChoose);
+            p.appendChild(text);
+            var mybody = document.getElementById("mybody");
+            mybody.insertBefore(p, mybody.lastChild);
+        }
+        setInterval(checkList, 1000);
+    </script>
+
+</body>
+</html>

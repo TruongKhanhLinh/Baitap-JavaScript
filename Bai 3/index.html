@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+</head>
+<body>
+    <p style="font-size: 2em ; font-weight: 900; text-align: center" id="demo"></p>
+    <p id="result"></p>
+    
+    <script type="text/javascript">
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://jsonplaceholder.typicode.com/users', true);
+
+        xhr.onloadstart = function () {
+            document.getElementById("demo").innerHTML = "Loading...";
+        }
+        xhr.onloadend = function () {
+            document.getElementById("demo").style.visibility = "hidden";
+        }
+
+        xhr.onload = function () {
+            var result = document.getElementById("result");
+            if (xhr.status === 200) {
+                var xhrResult = xhr.responseText;
+                result.innerHTML = xhrResult;
+            }
+            else if (xhr.status === 404) {
+                result.innerHTML = xhr.status + " - không tìm thấy";
+                result.style.textAlign = "center";
+                result.style.fontWeight = "900";
+                result.style.fontSize = "2em";
+            }
+            else {
+                result.innerHTML = xhr.status;
+            }
+        };
+        xhr.send();
+    </script>
+</body>
+</html>
